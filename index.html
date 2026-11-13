@@ -3,9 +3,342 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Portfolyo</title>
+<title>Bilgehan – güvenlik araçları</title>
+<meta name="description" content="Bilgehan'ın siber güvenlik araçları: pentest orkestrasyonu, OSINT, Burp eklentisi, savunma denetimi ve dünya haritası arayüzü.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&family=Literata:opsz,wght@7..72,300..800&display=swap">
+<link rel="stylesheet" href="style.css">
 </head>
-<body style="font-family:system-ui,sans-serif;display:grid;place-items:center;min-height:100vh;margin:0">
-<p>Portfolyo yapım aşamasında.</p>
+<body>
+<a class="skip" href="#icerik">İçeriğe geç</a>
+
+<svg class="defs" aria-hidden="true" focusable="false">
+  <defs>
+    <marker id="ok" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path class="mk" d="M0 0L10 5L0 10z"/>
+    </marker>
+  </defs>
+</svg>
+
+<div class="shell">
+  <aside class="side">
+    <p class="name">Bilgehan</p>
+    <p class="role">Siber güvenlik için araç yazıyorum.</p>
+    <nav aria-label="Projeler">
+      <ul class="index">
+        <li><a href="#argus">Argus</a></li>
+        <li><a href="#atlas">Atlas</a></li>
+        <li><a href="#cerberus">Cerberus</a></li>
+        <li><a href="#charon">Charon</a></li>
+        <li><a href="#kontrol">KONTROL</a></li>
+        <li><a href="#nestor">Nestor</a></li>
+      </ul>
+    </nav>
+    <p class="contact"><a href="https://github.com/sevahil">github.com/sevahil</a></p>
+  </aside>
+
+  <main id="icerik">
+    <section class="hero" aria-labelledby="baslik">
+      <h1 id="baslik"><span>Çalışmadıysa,</span> <span>temiz demez.</span></h1>
+      <p>Güvenlik araçlarımda tek bir kural var: bir kontrol çalışmadıysa, atlandıysa ya da kanıt üretmediyse sonuç “temiz” diye raporlanmaz.</p>
+      <p>Bu kural, kırık bir bütünlük denetleyicisinin beş gün boyunca “sapma yok” demesinden doğdu. Aşağıdaki altı proje pentest panelinden OSINT’e, Burp eklentisinden dünya haritasına uzanıyor. Hepsini kendim tasarladım ve yazdım.</p>
+    </section>
+
+    <!-- ARGUS -->
+    <article class="project" id="argus">
+      <h2>Argus</h2>
+      <p class="tagline">Yetkili pentest keşfini tek panelden yürüten orkestratör.</p>
+
+      <figure class="fig">
+        <div class="scroll">
+          <svg viewBox="0 0 640 220" role="img" aria-labelledby="argus-t">
+            <title id="argus-t">Argus mimarisi: operatör paneli ve müşteri görünümü Flask API üzerinden tarama modüllerine ve bulgulara bağlanır.</title>
+            <rect class="b" x="10" y="26" width="150" height="62" rx="6"/>
+            <text x="85" y="53" text-anchor="middle" class="strong">Operatör paneli</text>
+            <text x="85" y="72" text-anchor="middle" class="sm">web ve mobil</text>
+            <rect class="b" x="10" y="132" width="150" height="62" rx="6"/>
+            <text x="85" y="159" text-anchor="middle" class="strong">Müşteri görünümü</text>
+            <text x="85" y="178" text-anchor="middle" class="sm">ayrı girişli</text>
+            <rect class="b" x="245" y="80" width="130" height="62" rx="6"/>
+            <text x="310" y="107" text-anchor="middle" class="strong">Flask API</text>
+            <text x="310" y="126" text-anchor="middle" class="sm">oturum anahtarlı</text>
+            <rect class="b" x="460" y="26" width="170" height="62" rx="6"/>
+            <text x="545" y="53" text-anchor="middle" class="strong">Tarama modülleri</text>
+            <text x="545" y="72" text-anchor="middle" class="sm">89 modül</text>
+            <rect class="b" x="460" y="132" width="170" height="62" rx="6"/>
+            <text x="545" y="159" text-anchor="middle" class="strong">Bulgular</text>
+            <text x="545" y="178" text-anchor="middle" class="sm">önem derecesine göre</text>
+            <path class="a" d="M160 57 L245 100"/>
+            <path class="a" d="M160 163 L245 122"/>
+            <path class="a" d="M375 100 L460 62"/>
+            <path class="a" d="M375 122 L460 160"/>
+          </svg>
+        </div>
+        <figcaption>Operatör ve müşteri aynı API’ye farklı yetkiyle bağlanır; tarama akışı modüller üzerinden yürür.</figcaption>
+      </figure>
+
+      <div class="copy">
+        <p>Argus keşif ve zafiyet değerlendirme akışını bir Flask API’nin arkasında toplar. Operatör koyu, SOC tarzı bir panelden çalışır; telefon için ayrı bir mobil görünüm ve müşteri için ayrı girişli bir görünüm vardır.</p>
+        <p>Arayüzün tamamı tek bir tasarım token sistemine bağlı: renk, boşluk, yarıçap ve yazı ölçeği <code>:root</code> bloğunda durur. Bu yüzden V1 görsel revizyonu, tarama akışına ve API’ye dokunmadan yapılabildi.</p>
+      </div>
+
+      <dl class="facts">
+        <div><dt>89</dt><dd>modül</dd></div>
+        <div><dt>831</dt><dd>test, tamamı geçiyor</dd></div>
+        <div><dt>6</dt><dd>arayüz sayfası</dd></div>
+      </dl>
+      <ul class="tags"><li>Python</li><li>Flask</li><li>HTML, CSS, JavaScript</li><li>pytest</li></ul>
+    </article>
+
+    <!-- ATLAS -->
+    <article class="project" id="atlas">
+      <h2>Atlas</h2>
+      <p class="tagline">Tek kısayolla açılan, 3B küre ile düz harita arasında anlık geçen dünya arayüzü.</p>
+
+      <figure class="fig">
+        <div class="scroll">
+          <svg viewBox="0 0 640 220" role="img" aria-labelledby="atlas-t">
+            <title id="atlas-t">Atlas mimarisi: tarayıcı yerel vekil sunucuya, vekil de önbellekle birlikte dış veri kaynaklarına bağlanır.</title>
+            <rect class="b" x="10" y="70" width="150" height="80" rx="6"/>
+            <text x="85" y="105" text-anchor="middle" class="strong">Tarayıcı</text>
+            <text x="85" y="125" text-anchor="middle" class="sm">MapLibre GL</text>
+            <rect class="b" x="245" y="70" width="150" height="80" rx="6"/>
+            <text x="320" y="105" text-anchor="middle" class="strong">Yerel vekil</text>
+            <text x="320" y="125" text-anchor="middle" class="sm">Node, disk önbelleği</text>
+            <rect class="b" x="480" y="10" width="150" height="56" rx="6"/>
+            <text x="555" y="43" text-anchor="middle">Vektör karo</text>
+            <rect class="b" x="480" y="82" width="150" height="56" rx="6"/>
+            <text x="555" y="115" text-anchor="middle">Yükseklik ve uydu</text>
+            <rect class="b" x="480" y="154" width="150" height="56" rx="6"/>
+            <text x="555" y="187" text-anchor="middle">Arama ve sınırlar</text>
+            <path class="a" d="M160 110 L245 110"/>
+            <path class="a" d="M395 110 L480 38"/>
+            <path class="a" d="M395 110 L480 110"/>
+            <path class="a" d="M395 110 L480 182"/>
+            <text x="202" y="100" text-anchor="middle" class="sm">yerel</text>
+          </svg>
+        </div>
+        <figcaption>Dünya verisi uygulamaya gömülmez. Kabuk yereldir, veri canlı kaynaklardan gelir ve diske önbelleklenir.</figcaption>
+      </figure>
+
+      <div class="copy">
+        <p>Atlas’ta bütün ülkeler, eyaletler, ilçeler, mahalleler ve sokaklar hem haritada çizili hem aranabilir hem de soldaki ağaçtan kademe kademe gezilebilir. Küre gerçek yükseklik verisiyle kabartmalı ve 3B binalıdır.</p>
+        <p>Tüm sokaklar tek başına yüzlerce gigabayt tutar, bu yüzden veri gömülmedi. Sıfır bağımlılıklı küçük bir Node sunucusu dış kaynakları tek kapıdan vekilleyip önbelleğe alıyor. Ardından işletme verisi katmanı eklendi; proje 27 sürüm boyunca ölçülüp optimize edildi.</p>
+      </div>
+
+      <dl class="facts">
+        <div><dt>537</dt><dd>test, tamamı geçiyor</dd></div>
+        <div><dt>27</dt><dd>sürüm</dd></div>
+        <div><dt>0</dt><dd>npm bağımlılığı</dd></div>
+      </dl>
+      <ul class="tags"><li>JavaScript</li><li>MapLibre GL</li><li>Node.js</li><li>OpenStreetMap</li><li>DuckDB</li></ul>
+    </article>
+
+    <!-- CERBERUS -->
+    <article class="project" id="cerberus">
+      <h2>Cerberus</h2>
+      <p class="tagline">Güvenlik eğitimi için yalnızca yerelde çalışan lab emülasyon orkestratörü.</p>
+
+      <figure class="fig">
+        <div class="scroll">
+          <svg viewBox="0 0 640 190" role="img" aria-labelledby="cer-t">
+            <title id="cer-t">Cerberus akışı: komut satırı veya panel bir plan üretir, çalıştırma kapısı yalnızca localhost ve lab onayıyla geçer, çıktı simüle olaylar ve mühürlü kayıttır.</title>
+            <rect class="b" x="10" y="62" width="110" height="60" rx="6"/>
+            <text x="65" y="90" text-anchor="middle" class="strong">CLI, panel</text>
+            <text x="65" y="108" text-anchor="middle" class="sm">new, plan, run</text>
+            <rect class="b" x="150" y="62" width="90" height="60" rx="6"/>
+            <text x="195" y="98" text-anchor="middle" class="strong">Plan</text>
+            <rect class="g" x="270" y="34" width="150" height="116" rx="6"/>
+            <text x="345" y="62" text-anchor="middle" class="strong gt">Çalıştırma kapısı</text>
+            <text x="345" y="90" text-anchor="middle" class="sm">yalnızca localhost</text>
+            <text x="345" y="110" text-anchor="middle" class="sm">lab_approved: true</text>
+            <text x="345" y="130" text-anchor="middle" class="sm">ağ ve alt süreç yok</text>
+            <rect class="b" x="450" y="30" width="180" height="56" rx="6"/>
+            <text x="540" y="63" text-anchor="middle">Simüle edilmiş olaylar</text>
+            <rect class="b" x="450" y="98" width="180" height="56" rx="6"/>
+            <text x="540" y="124" text-anchor="middle">runs/ JSON çıktısı</text>
+            <text x="540" y="142" text-anchor="middle" class="sm">bütünlük zinciriyle</text>
+            <path class="a" d="M120 92 L150 92"/>
+            <path class="a" d="M240 92 L270 92"/>
+            <path class="a" d="M420 80 L450 58"/>
+            <path class="a" d="M420 104 L450 126"/>
+          </svg>
+        </div>
+        <figcaption>Kapı çalıştırıcının içinde değil önündedir: koşul sağlanmadan hiçbir olay üretilmez.</figcaption>
+      </figure>
+
+      <div class="copy">
+        <p>Cerberus, eğitim senaryolarını gerçek bir hedefe dokunmadan çalıştırmak için yazıldı. İlk sürüm bilerek kısıtlı: dış araç çağırmaz, ağ trafiği üretmez ve yalnızca <code>localhost</code> hedefini kabul eder.</p>
+        <p>Çalıştırmak için açık bir lab onayı gerekir. Çıktı simüle edilmiş olaylardan oluşur ve her çalıştırma bütünlük zinciriyle JSON artefaktları olarak <code>runs/</code> altına yazılır. Böylece sonradan eklenecek senaryolar için güvenli bir çalışma modeli hazır.</p>
+      </div>
+
+      <dl class="facts">
+        <div><dt>3</dt><dd>test, tamamı geçiyor</dd></div>
+        <div><dt>0</dt><dd>dış ağ çağrısı</dd></div>
+      </dl>
+      <ul class="tags"><li>Python</li><li>CLI</li><li>Yerel panel</li></ul>
+    </article>
+
+    <!-- CHARON -->
+    <article class="project" id="charon">
+      <h2>Charon</h2>
+      <p class="tagline">Burp Suite’in içine yüklenen, parametre ve zafiyet testini otomatikleştiren eklenti.</p>
+
+      <figure class="fig">
+        <div class="scroll">
+          <svg viewBox="0 0 640 220" role="img" aria-labelledby="cha-t">
+            <title id="cha-t">Charon akışı: Burp Suite içinde keşif, enjeksiyon testi, kimlik doğrulama testi ve başlık ile CORS aşamaları çalışır; SafetyGuard hepsini sınırlar; sonuç bulgu tablosuna düşer.</title>
+            <rect class="dash" x="10" y="30" width="470" height="170" rx="10"/>
+            <text x="26" y="54" class="sm">Burp Suite içinde</text>
+            <rect class="b" x="30" y="72" width="100" height="44" rx="6"/>
+            <text x="80" y="99" text-anchor="middle">Keşif</text>
+            <rect class="b" x="142" y="72" width="100" height="44" rx="6"/>
+            <text x="192" y="99" text-anchor="middle">Enjeksiyon</text>
+            <rect class="b" x="254" y="72" width="100" height="44" rx="6"/>
+            <text x="304" y="99" text-anchor="middle">Kimlik</text>
+            <rect class="b" x="366" y="72" width="100" height="44" rx="6"/>
+            <text x="416" y="99" text-anchor="middle">Başlık, CORS</text>
+            <path class="a" d="M130 94 L142 94"/>
+            <path class="a" d="M242 94 L254 94"/>
+            <path class="a" d="M354 94 L366 94"/>
+            <rect class="g" x="30" y="140" width="436" height="40" rx="6"/>
+            <text x="248" y="165" text-anchor="middle" class="gt" style="font-size:12.5px">SafetyGuard: kapsam kilidi, hız sınırı, STOP dosyası, yetki onayı</text>
+            <rect class="b" x="520" y="80" width="110" height="60" rx="6"/>
+            <text x="575" y="106" text-anchor="middle" class="strong">Bulgu</text>
+            <text x="575" y="124" text-anchor="middle" class="strong">tablosu</text>
+            <path class="a" d="M480 110 L520 110"/>
+          </svg>
+        </div>
+        <figcaption>Her aşama aynı güvenlik katmanının içinden geçer; test yalnızca doğrulama amaçlıdır, veri silmez veya dökmez.</figcaption>
+      </figure>
+
+      <div class="copy">
+        <p>Burp Suite Community’de REST API yok, bu yüzden Burp’ün sekmelerini sürmenin tek yolu Burp’ün içine yüklenen bir eklenti yazmaktı. Charon, Montoya API ile Java’da yazıldı. Araç; API keşfi, gizli parametre bulma, SQLi, XSS, LFI, SSTI ve açık yönlendirme denemelerini, ayrıca kimlik doğrulama ve başlık/CORS kontrollerini tek boru hattında yürütür.</p>
+        <p>Güvenliği tasarımın merkezine koydum. Kapsam kilidi, hız sınırı, dosya tabanlı acil durdurma ve açık yetki onayı olmadan tarama başlamaz. Servis dışı bırakma ve spam istekleri saldırı olarak reddedildi; onun yerine maruziyeti yalnızca ölçen tespit modu yazıldı.</p>
+      </div>
+
+      <dl class="facts">
+        <div><dt>32</dt><dd>sınıf</dd></div>
+        <div><dt>835 KB</dt><dd>tek parça jar</dd></div>
+        <div><dt>21</dt><dd>Java sürümü</dd></div>
+      </dl>
+      <ul class="tags"><li>Java 21</li><li>Burp Montoya API</li><li>Swing</li><li>jsoup</li><li>Gson</li></ul>
+    </article>
+
+    <!-- KONTROL -->
+    <article class="project" id="kontrol">
+      <h2>KONTROL</h2>
+      <p class="tagline">Tek tıkla makinenin tam güvenlik denetimi: dört aşama, tek sonuç.</p>
+
+      <figure class="fig">
+        <div class="scroll">
+          <svg viewBox="0 0 640 230" role="img" aria-labelledby="kon-t">
+            <title id="kon-t">KONTROL akışı: zararlı yazılım avı, güncelleme, pasif denetim ve aktif test sırayla çalışır, hepsi aynı kayıt biçimini yazar, sonuç ekrandan değil kayıttan okunur.</title>
+            <rect class="b" x="10" y="16" width="140" height="58" rx="6"/>
+            <text x="80" y="40" text-anchor="middle" class="strong">Zararlı yazılım</text>
+            <text x="80" y="58" text-anchor="middle" class="strong">avı</text>
+            <rect class="b" x="170" y="16" width="140" height="58" rx="6"/>
+            <text x="240" y="50" text-anchor="middle" class="strong">Güncelleme</text>
+            <rect class="b" x="330" y="16" width="140" height="58" rx="6"/>
+            <text x="400" y="50" text-anchor="middle" class="strong">Pasif denetim</text>
+            <rect class="b" x="490" y="16" width="140" height="58" rx="6"/>
+            <text x="560" y="50" text-anchor="middle" class="strong">Aktif test</text>
+            <path class="a" d="M150 45 L170 45"/>
+            <path class="a" d="M310 45 L330 45"/>
+            <path class="a" d="M470 45 L490 45"/>
+            <path class="l" d="M80 74 L80 108"/>
+            <path class="l" d="M240 74 L240 108"/>
+            <path class="l" d="M400 74 L400 108"/>
+            <path class="l" d="M560 74 L560 108"/>
+            <rect class="b" x="10" y="108" width="620" height="40" rx="6"/>
+            <text x="320" y="133" text-anchor="middle">Her aşama aynı biçimde makine okunur kayıt yazar</text>
+            <path class="a" d="M320 148 L320 172"/>
+            <rect class="g" x="10" y="172" width="620" height="44" rx="6"/>
+            <text x="320" y="199" text-anchor="middle" class="gt">Kayıt yoksa, motor atlandıysa ya da kanarya yakalanmadıysa sonuç “temiz” olmaz</text>
+          </svg>
+        </div>
+        <figcaption>Sonuç ekran metninden değil kayıttan okunur; ekran metni değişebilir, kayıt biçimi değişmez.</figcaption>
+      </figure>
+
+      <div class="copy">
+        <p>KONTROL masaüstündeki tek ikonun arkasında çalışır. Sıra sabittir: önce zararlı yazılım avı, sonra güncelleme, sonra salt okunur denetim, en sonda aktif saldırgan test. Şifre bir kez sorulur, sonunda tek birleşik sonuç basılır.</p>
+        <p>Üç mekanizma zinciri ayakta tutuyor. Aşamalar tek bir kayıt biçimine yazar. Her rapor bir öncekinin özetiyle mühürlenir, böylece eski bir satırı silmek sonraki mühürleri bozar. Her motor için bir kanarya doğrulaması vardır: motor kanaryayı yakalayamazsa o motorun “temiz” sonucu geçersiz sayılır. Masaüstü arayüzü ayrı bir proje: KONTROL Panel.</p>
+      </div>
+
+      <dl class="facts">
+        <div><dt>4</dt><dd>aşama</dd></div>
+        <div><dt>7.500</dt><dd>satır shell, 11 dosya</dd></div>
+        <div><dt>971</dt><dd>test, KONTROL Panel’de</dd></div>
+      </dl>
+      <ul class="tags"><li>Bash</li><li>Python</li><li>ClamAV</li><li>YARA</li><li>xterm.js</li></ul>
+    </article>
+
+    <!-- NESTOR -->
+    <article class="project" id="nestor">
+      <h2>Nestor</h2>
+      <p class="tagline">Kategori kataloğundan beslenen, kuralları kodla zorlanan OSINT orkestratörü.</p>
+
+      <figure class="fig">
+        <div class="scroll">
+          <svg viewBox="0 0 640 200" role="img" aria-labelledby="nes-t">
+            <title id="nes-t">Nestor akışı: katalog modülleri belirler, modüller tek bir ağ kapısından dışarı çıkar; kapı hız sınırı, denetim kaydı, kanıt deposu ve Tor uygular.</title>
+            <rect class="b" x="10" y="60" width="140" height="80" rx="6"/>
+            <text x="80" y="95" text-anchor="middle" class="strong">Katalog</text>
+            <text x="80" y="115" text-anchor="middle" class="sm">145 madde</text>
+            <rect class="b" x="180" y="60" width="140" height="80" rx="6"/>
+            <text x="250" y="95" text-anchor="middle" class="strong">Modül</text>
+            <text x="250" y="115" text-anchor="middle" class="sm">CATEGORY, run()</text>
+            <rect class="g" x="350" y="30" width="140" height="140" rx="6"/>
+            <text x="420" y="56" text-anchor="middle" class="strong gt">ctx.http_get</text>
+            <text x="420" y="84" text-anchor="middle" class="sm">hız sınırı</text>
+            <text x="420" y="104" text-anchor="middle" class="sm">denetim kaydı</text>
+            <text x="420" y="124" text-anchor="middle" class="sm">kanıt deposu</text>
+            <text x="420" y="144" text-anchor="middle" class="sm">Tor, çevrimdışı kilit</text>
+            <rect class="b" x="520" y="60" width="110" height="80" rx="6"/>
+            <text x="575" y="105" text-anchor="middle" class="strong">Dış kaynaklar</text>
+            <path class="a" d="M150 100 L180 100"/>
+            <path class="a" d="M320 100 L350 100"/>
+            <path class="a" d="M490 100 L520 100"/>
+          </svg>
+        </div>
+        <figcaption>Modül yazan kişi kapıyı açamaz: ağa yalnızca tek bir fonksiyon üzerinden çıkılır ve kurallar orada uygulanır.</figcaption>
+      </figure>
+
+      <div class="copy">
+        <p>Nestor’da kategori listesi koda elle yazılmaz. Bir derleyici kapsam belgesini ayrıştırıp kataloğu üretir; yeni modül, katalogdaki bir kategoriye bağlanan tek bir dosyadır. Modülü olmayan kategori hata vermez, “uygulanmadı” olarak görünür.</p>
+        <p>Güvenlik kuralları dokümanda değil kodda. Her bulgu kaynak güvenilirliği derecelendirmesi olmadan oluşturulamaz, yüksek riskli kategoriler açık onay olmadan engellenir, Tor çıkışı doğrulanmadan tek sorgu gitmez. Yazarken yakaladığım hatalar testlere bağlandı: Türkçe büyük I’nın küçük harf tuzağı ve alan adı sonek eşleşmesinin yanlış atıf üretmesi gibi.</p>
+      </div>
+
+      <dl class="facts">
+        <div><dt>128</dt><dd>kategorilik katalog</dd></div>
+        <div><dt>157</dt><dd>test, tamamı geçiyor</dd></div>
+        <div><dt>0</dt><dd>TL bütçe, ücretsiz kaynaklarla</dd></div>
+      </dl>
+      <ul class="tags"><li>Python</li><li>YAML katalog</li><li>Rootless Docker</li><li>Tor</li><li>pytest</li></ul>
+    </article>
+
+    <p class="foot">Kaynak kodların hepsi gizli (private). Göstermemi istersen <a href="https://github.com/sevahil">GitHub</a> üzerinden yaz.</p>
+  </main>
+</div>
+
+<script>
+  (function () {
+    var links = document.querySelectorAll('.index a');
+    var map = {};
+    links.forEach(function (a) { map[a.getAttribute('href').slice(1)] = a; });
+    if (!('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) {
+          links.forEach(function (a) { a.removeAttribute('aria-current'); });
+          var a = map[e.target.id];
+          if (a) a.setAttribute('aria-current', 'true');
+        }
+      });
+    }, { rootMargin: '-30% 0px -60% 0px' });
+    document.querySelectorAll('.project').forEach(function (s) { io.observe(s); });
+  })();
+</script>
 </body>
 </html>
